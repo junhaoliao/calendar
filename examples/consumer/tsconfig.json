@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "lib": ["ES2022", "DOM"],
+        "jsx": "react-jsx",
+        "strict": true,
+        "skipLibCheck": false,
+        "noEmit": true,
+        "noUncheckedSideEffectImports": true
+    },
+    "include": ["main.tsx", "types.cts", "i18next-host.d.ts", "i18next-host-proof.ts"]
+}
