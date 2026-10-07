@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig.lib.json",
+    "compilerOptions": {
+        "noEmit": false,
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "rootDir": "src",
+        "outDir": ".tmp/types",
+        "types": ["react", "react-dom"]
+    },
+    "include": ["src/index.ts", "src/date-math.ts"]
+}

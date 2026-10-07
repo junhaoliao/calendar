@@ -1,0 +1,54 @@
+/* Only the standalone demo owns the viewport; this file is never packaged. */
+html,
+body,
+#root {
+    margin: 0;
+    height: 100%;
+}
+.calendar-demo {
+    --event-calendar-font: "Inter Variable", sans-serif;
+    display: flex;
+    height: 100dvh;
+    min-height: 0;
+    flex-direction: column;
+    background: var(--background);
+    color: var(--foreground);
+}
+.demo-header {
+    display: flex;
+    height: 56px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+}
+.demo-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.demo-calendar {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    padding: 8px;
+}
+@media (min-width: 640px) {
+    .demo-header {
+        padding: 0 24px;
+    }
+    .demo-calendar {
+        padding: 24px;
+    }
+}
+
+/* The standalone toast spinner no longer belongs to the library CSS scan. */
+.toaster .animate-spin {
+    animation: event-calendar-spin 1s linear infinite;
+}
+@keyframes event-calendar-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

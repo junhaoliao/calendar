@@ -1,0 +1,149 @@
+{
+    "root": {
+        "label": "Calendrier des événements"
+    },
+    "toolbar": {
+        "today": "Aujourd’hui",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "newEvent": "Nouvel événement"
+    },
+    "views": {
+        "month": "Mois",
+        "week": "Semaine",
+        "day": "Jour",
+        "agenda": "Agenda",
+        "shortcut": {
+            "month": "M",
+            "week": "W",
+            "day": "D",
+            "agenda": "A"
+        }
+    },
+    "agenda": {
+        "empty": {
+            "title": "Aucun événement trouvé",
+            "description": "Aucun événement n’est prévu pour cette période."
+        }
+    },
+    "common": {
+        "allDay": "Toute la journée"
+    },
+    "month": {
+        "more_one": "+ {{count}} de plus",
+        "more_other": "+ {{count}} de plus",
+        "more_many": "+ {{count}} de plus"
+    },
+    "timeOverflow": {
+        "triggerLabel_one": "+{{count}} événement supplémentaire, {{date}}",
+        "triggerLabel_other": "+{{count}} événements supplémentaires, {{date}}",
+        "triggerLabel_many": "+{{count}} événements supplémentaires, {{date}}",
+        "more_one": "+{{count}} de plus",
+        "more_other": "+{{count}} de plus",
+        "more_many": "+{{count}} de plus",
+        "compact": "+{{count}}",
+        "title_one": "{{date}} · {{count}} événement",
+        "title_other": "{{date}} · {{count}} événements",
+        "title_many": "{{date}} · {{count}} événements",
+        "openDay": "Ouvrir la vue Jour"
+    },
+    "event": {
+        "label": "{{title}}, {{time}}",
+        "labelContinued": "{{title}}, {{time}}, suite",
+        "editLabel": "Modifier {{title}}, {{range}}",
+        "allDayRange": "{{start}} – {{end}} · Toute la journée",
+        "midnight": "minuit",
+        "continuesBefore": "Continue depuis la veille",
+        "continuesAfter": "Se poursuit le lendemain"
+    },
+    "resize": {
+        "handleLabel": {
+            "start": "Ajuster le début de {{title}}",
+            "end": "Ajuster la fin de {{title}}"
+        },
+        "hint": {
+            "startDate": "Ajuster le début ; les flèches modifient la date, Entrée enregistre, Échap annule",
+            "startTime": "Ajuster le début ; les flèches modifient l’heure, Entrée enregistre, Échap annule",
+            "endDate": "Ajuster la fin ; les flèches modifient la date, Entrée enregistre, Échap annule",
+            "endTime": "Ajuster la fin ; les flèches modifient l’heure, Entrée enregistre, Échap annule"
+        },
+        "announcement": "Redimensionnement de {{title}} : {{start}} – {{end}}"
+    },
+    "slot": {
+        "addAllDay": "Ajouter un événement le {{date}} pour toute la journée",
+        "addAt": "Ajouter un événement le {{date}} à {{time}}"
+    },
+    "editor": {
+        "title": {
+            "edit": "Modifier l’événement",
+            "create": "Créer un événement"
+        },
+        "description": {
+            "edit": "Modifier les détails de cet événement",
+            "create": "Ajouter un nouvel événement à votre calendrier"
+        },
+        "fields": {
+            "title": "Titre",
+            "description": "Description",
+            "allDay": "Toute la journée",
+            "location": "Lieu",
+            "startDate": "Date de début",
+            "startTime": "Heure de début",
+            "endDate": "Date de fin",
+            "endTime": "Heure de fin",
+            "color": "Couleur"
+        },
+        "actions": {
+            "delete": "Supprimer l’événement",
+            "cancel": "Annuler",
+            "save": "Enregistrer"
+        },
+        "errors": {
+            "endBeforeStart": "La date de fin ne peut pas précéder la date de début"
+        },
+        "untitled": "(sans titre)"
+    },
+    "colors": {
+        "sky": "Bleu ciel",
+        "amber": "Ambre",
+        "violet": "Violet",
+        "rose": "Rose",
+        "emerald": "Émeraude",
+        "orange": "Orange"
+    },
+    "announcement": {
+        "added": "Événement « {{title}} » ajouté",
+        "updated": "Événement « {{title}} » modifié",
+        "deleted": "Événement « {{title}} » supprimé",
+        "moved": "Événement « {{title}} » déplacé",
+        "resized": "Événement « {{title}} » redimensionné",
+        "moveRejected": "Déplacement non autorisé",
+        "dismissRejection": "Fermer"
+    },
+    "datePicker": {
+        "previousMonth": "Aller au mois précédent",
+        "nextMonth": "Aller au mois suivant",
+        "day": "{{date}}",
+        "dayToday": "Aujourd’hui, {{date}}",
+        "daySelected": "{{date}}, sélectionné",
+        "dayTodaySelected": "Aujourd’hui, {{date}}, sélectionné"
+    },
+    "formats": {
+        "monthYear": "MMMM yyyy",
+        "dayHeading": "EEE d MMMM yyyy",
+        "dayCompact": "d MMM yyyy",
+        "dayMedium": "d MMMM yyyy",
+        "weekStart": "MMM",
+        "weekEnd": "MMM yyyy",
+        "agendaDay": "PPPP",
+        "resizeInstant": "PP p",
+        "timeOption": "p",
+        "overflowTriggerDay": "PPPP",
+        "overflowTitleDay": "PP",
+        "weekdayDay": "EEE d",
+        "hourLabel": "p",
+        "detailDay": "PP",
+        "detailTime": "p",
+        "detailDateTime": "PP p"
+    }
+}

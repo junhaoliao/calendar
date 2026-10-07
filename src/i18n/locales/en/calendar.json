@@ -1,0 +1,149 @@
+{
+    "root": {
+        "label": "Event calendar"
+    },
+    "toolbar": {
+        "today": "Today",
+        "previous": "Previous",
+        "next": "Next",
+        "newEvent": "New event"
+    },
+    "views": {
+        "month": "Month",
+        "week": "Week",
+        "day": "Day",
+        "agenda": "Agenda",
+        "shortcut": {
+            "month": "M",
+            "week": "W",
+            "day": "D",
+            "agenda": "A"
+        }
+    },
+    "agenda": {
+        "empty": {
+            "title": "No events found",
+            "description": "There are no events scheduled for this time period."
+        }
+    },
+    "common": {
+        "allDay": "All day"
+    },
+    "month": {
+        "more_one": "+ {{count}} more",
+        "more_other": "+ {{count}} more",
+        "more_many": "+ {{count}} more"
+    },
+    "timeOverflow": {
+        "triggerLabel_one": "+{{count}} more events, {{date}}",
+        "triggerLabel_other": "+{{count}} more events, {{date}}",
+        "triggerLabel_many": "+{{count}} more events, {{date}}",
+        "more_one": "+{{count}} more",
+        "more_other": "+{{count}} more",
+        "more_many": "+{{count}} more",
+        "compact": "+{{count}}",
+        "title_one": "{{date}} ·{{count}} events",
+        "title_other": "{{date}} ·{{count}} events",
+        "title_many": "{{date}} ·{{count}} events",
+        "openDay": "Open day view"
+    },
+    "event": {
+        "label": "{{title}}, {{time}}",
+        "labelContinued": "{{title}}, {{time}}, continued",
+        "editLabel": "Edit {{title}}, {{range}}",
+        "allDayRange": "{{start}} – {{end}} · All day",
+        "midnight": "midnight",
+        "continuesBefore": "Continues from previous day",
+        "continuesAfter": "Continues into next day"
+    },
+    "resize": {
+        "handleLabel": {
+            "start": "Adjust start of {{title}}",
+            "end": "Adjust end of {{title}}"
+        },
+        "hint": {
+            "startDate": "Adjust start; arrow keys change date, Enter saves, Escape cancels",
+            "startTime": "Adjust start; arrow keys change time, Enter saves, Escape cancels",
+            "endDate": "Adjust end; arrow keys change date, Enter saves, Escape cancels",
+            "endTime": "Adjust end; arrow keys change time, Enter saves, Escape cancels"
+        },
+        "announcement": "Resizing {{title}}: {{start}} – {{end}}"
+    },
+    "slot": {
+        "addAllDay": "Add event {{date}} all day",
+        "addAt": "Add event {{date}} at {{time}}"
+    },
+    "editor": {
+        "title": {
+            "edit": "Edit Event",
+            "create": "Create Event"
+        },
+        "description": {
+            "edit": "Edit the details of this event",
+            "create": "Add a new event to your calendar"
+        },
+        "fields": {
+            "title": "Title",
+            "description": "Description",
+            "allDay": "All day",
+            "location": "Location",
+            "startDate": "Start Date",
+            "startTime": "Start Time",
+            "endDate": "End Date",
+            "endTime": "End Time",
+            "color": "Color"
+        },
+        "actions": {
+            "delete": "Delete event",
+            "cancel": "Cancel",
+            "save": "Save"
+        },
+        "errors": {
+            "endBeforeStart": "End date cannot be before start date"
+        },
+        "untitled": "(no title)"
+    },
+    "colors": {
+        "sky": "Sky",
+        "amber": "Amber",
+        "violet": "Violet",
+        "rose": "Rose",
+        "emerald": "Emerald",
+        "orange": "Orange"
+    },
+    "announcement": {
+        "added": "Event \"{{title}}\" added",
+        "updated": "Event \"{{title}}\" updated",
+        "deleted": "Event \"{{title}}\" deleted",
+        "moved": "Event \"{{title}}\" moved",
+        "resized": "Event \"{{title}}\" resized",
+        "moveRejected": "Move not allowed",
+        "dismissRejection": "Dismiss"
+    },
+    "datePicker": {
+        "previousMonth": "Go to the Previous Month",
+        "nextMonth": "Go to the Next Month",
+        "day": "{{date}}",
+        "dayToday": "Today, {{date}}",
+        "daySelected": "{{date}}, selected",
+        "dayTodaySelected": "Today, {{date}}, selected"
+    },
+    "formats": {
+        "monthYear": "MMMM yyyy",
+        "dayHeading": "EEE MMMM d, yyyy",
+        "dayCompact": "MMM d, yyyy",
+        "dayMedium": "MMMM d, yyyy",
+        "weekStart": "MMM",
+        "weekEnd": "MMM yyyy",
+        "agendaDay": "d MMM, EEEE",
+        "resizeInstant": "MMM d, h:mm a",
+        "timeOption": "h:mm a",
+        "overflowTriggerDay": "EEEE MMMM d",
+        "overflowTitleDay": "EEE, MMM d",
+        "weekdayDay": "EEE dd",
+        "hourLabel": "h a",
+        "detailDay": "MMM d",
+        "detailTime": "h:mm a",
+        "detailDateTime": "MMM d h:mm a"
+    }
+}

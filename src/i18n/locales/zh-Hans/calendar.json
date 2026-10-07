@@ -1,0 +1,149 @@
+{
+    "root": {
+        "label": "日程日历"
+    },
+    "toolbar": {
+        "today": "今天",
+        "previous": "上一页",
+        "next": "下一页",
+        "newEvent": "新建日程"
+    },
+    "views": {
+        "month": "月",
+        "week": "周",
+        "day": "日",
+        "agenda": "日程",
+        "shortcut": {
+            "month": "M",
+            "week": "W",
+            "day": "D",
+            "agenda": "A"
+        }
+    },
+    "agenda": {
+        "empty": {
+            "title": "未找到日程",
+            "description": "此时间段没有安排日程。"
+        }
+    },
+    "common": {
+        "allDay": "全天"
+    },
+    "month": {
+        "more_one": "+ {{count}} 项",
+        "more_other": "+ {{count}} 项",
+        "more_many": "+ {{count}} 项"
+    },
+    "timeOverflow": {
+        "triggerLabel_one": "{{date}}，还有 {{count}} 项日程",
+        "triggerLabel_other": "{{date}}，还有 {{count}} 项日程",
+        "triggerLabel_many": "{{date}}，还有 {{count}} 项日程",
+        "more_one": "+{{count}} 项",
+        "more_other": "+{{count}} 项",
+        "more_many": "+{{count}} 项",
+        "compact": "+{{count}}",
+        "title_one": "{{date}} · {{count}} 项日程",
+        "title_other": "{{date}} · {{count}} 项日程",
+        "title_many": "{{date}} · {{count}} 项日程",
+        "openDay": "打开日视图"
+    },
+    "event": {
+        "label": "{{title}}，{{time}}",
+        "labelContinued": "{{title}}，{{time}}，跨日续段",
+        "editLabel": "编辑 {{title}}，{{range}}",
+        "allDayRange": "{{start}} 至 {{end}} · 全天",
+        "midnight": "午夜",
+        "continuesBefore": "续接前一天",
+        "continuesAfter": "延续至次日"
+    },
+    "resize": {
+        "handleLabel": {
+            "start": "调整 {{title}} 的开始时间",
+            "end": "调整 {{title}} 的结束时间"
+        },
+        "hint": {
+            "startDate": "调整开始日期；方向键更改日期，回车保存，Esc 取消",
+            "startTime": "调整开始时间；方向键更改时间，回车保存，Esc 取消",
+            "endDate": "调整结束日期；方向键更改日期，回车保存，Esc 取消",
+            "endTime": "调整结束时间；方向键更改时间，回车保存，Esc 取消"
+        },
+        "announcement": "正在调整 {{title}}：{{start}} – {{end}}"
+    },
+    "slot": {
+        "addAllDay": "在 {{date}} 新建全天日程",
+        "addAt": "在 {{date}} {{time}} 新建日程"
+    },
+    "editor": {
+        "title": {
+            "edit": "编辑日程",
+            "create": "新建日程"
+        },
+        "description": {
+            "edit": "编辑此日程的详细信息",
+            "create": "向日历添加新日程"
+        },
+        "fields": {
+            "title": "标题",
+            "description": "描述",
+            "allDay": "全天",
+            "location": "地点",
+            "startDate": "开始日期",
+            "startTime": "开始时间",
+            "endDate": "结束日期",
+            "endTime": "结束时间",
+            "color": "颜色"
+        },
+        "actions": {
+            "delete": "删除日程",
+            "cancel": "取消",
+            "save": "保存"
+        },
+        "errors": {
+            "endBeforeStart": "结束日期不能早于开始日期"
+        },
+        "untitled": "(无标题)"
+    },
+    "colors": {
+        "sky": "天蓝色",
+        "amber": "琥珀色",
+        "violet": "紫色",
+        "rose": "玫红色",
+        "emerald": "翠绿色",
+        "orange": "橙色"
+    },
+    "announcement": {
+        "added": "已添加日程“{{title}}”",
+        "updated": "已更新日程“{{title}}”",
+        "deleted": "已删除日程“{{title}}”",
+        "moved": "已移动日程“{{title}}”",
+        "resized": "已调整日程“{{title}}”",
+        "moveRejected": "无法移动到此处",
+        "dismissRejection": "关闭"
+    },
+    "datePicker": {
+        "previousMonth": "上个月",
+        "nextMonth": "下个月",
+        "day": "{{date}}",
+        "dayToday": "今天，{{date}}",
+        "daySelected": "{{date}}，已选中",
+        "dayTodaySelected": "今天，{{date}}，已选中"
+    },
+    "formats": {
+        "monthYear": "yyyy'年'M'月'",
+        "dayHeading": "yyyy'年'M'月'd'日' EEE",
+        "dayCompact": "yyyy/M/d",
+        "dayMedium": "yyyy'年'M'月'd'日'",
+        "weekStart": "yyyy'年'M'月'",
+        "weekEnd": "yyyy'年'M'月'",
+        "agendaDay": "PPPP",
+        "resizeInstant": "PP p",
+        "timeOption": "p",
+        "overflowTriggerDay": "PPPP",
+        "overflowTitleDay": "PP",
+        "weekdayDay": "EEE d",
+        "hourLabel": "p",
+        "detailDay": "PP",
+        "detailTime": "p",
+        "detailDateTime": "PP p"
+    }
+}

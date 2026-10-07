@@ -1,0 +1,149 @@
+{
+    "root": {
+        "label": "行程月曆"
+    },
+    "toolbar": {
+        "today": "今天",
+        "previous": "上一頁",
+        "next": "下一頁",
+        "newEvent": "新增行程"
+    },
+    "views": {
+        "month": "月",
+        "week": "週",
+        "day": "日",
+        "agenda": "議程",
+        "shortcut": {
+            "month": "M",
+            "week": "W",
+            "day": "D",
+            "agenda": "A"
+        }
+    },
+    "agenda": {
+        "empty": {
+            "title": "找不到行程",
+            "description": "這段時間沒有安排任何行程。"
+        }
+    },
+    "common": {
+        "allDay": "全天"
+    },
+    "month": {
+        "more_one": "+ {{count}} 項",
+        "more_other": "+ {{count}} 項",
+        "more_many": "+ {{count}} 項"
+    },
+    "timeOverflow": {
+        "triggerLabel_one": "{{date}}，還有 {{count}} 項行程",
+        "triggerLabel_other": "{{date}}，還有 {{count}} 項行程",
+        "triggerLabel_many": "{{date}}，還有 {{count}} 項行程",
+        "more_one": "+{{count}} 項",
+        "more_other": "+{{count}} 項",
+        "more_many": "+{{count}} 項",
+        "compact": "+{{count}}",
+        "title_one": "{{date}} · {{count}} 項行程",
+        "title_other": "{{date}} · {{count}} 項行程",
+        "title_many": "{{date}} · {{count}} 項行程",
+        "openDay": "開啟日視圖"
+    },
+    "event": {
+        "label": "{{title}}，{{time}}",
+        "labelContinued": "{{title}}，{{time}}，跨日續段",
+        "editLabel": "編輯 {{title}}，{{range}}",
+        "allDayRange": "{{start}} 至 {{end}} · 全天",
+        "midnight": "午夜",
+        "continuesBefore": "承接前一天",
+        "continuesAfter": "延續至隔天"
+    },
+    "resize": {
+        "handleLabel": {
+            "start": "調整 {{title}} 的開始時間",
+            "end": "調整 {{title}} 的結束時間"
+        },
+        "hint": {
+            "startDate": "調整開始日期；方向鍵更改日期，Enter 儲存，Esc 取消",
+            "startTime": "調整開始時間；方向鍵更改時間，Enter 儲存，Esc 取消",
+            "endDate": "調整結束日期；方向鍵更改日期，Enter 儲存，Esc 取消",
+            "endTime": "調整結束時間；方向鍵更改時間，Enter 儲存，Esc 取消"
+        },
+        "announcement": "正在調整 {{title}}：{{start}} – {{end}}"
+    },
+    "slot": {
+        "addAllDay": "在 {{date}} 新增全天行程",
+        "addAt": "在 {{date}} {{time}} 新增行程"
+    },
+    "editor": {
+        "title": {
+            "edit": "編輯行程",
+            "create": "新增行程"
+        },
+        "description": {
+            "edit": "編輯此行程的詳細資訊",
+            "create": "在月曆中新增行程"
+        },
+        "fields": {
+            "title": "標題",
+            "description": "描述",
+            "allDay": "全天",
+            "location": "地點",
+            "startDate": "開始日期",
+            "startTime": "開始時間",
+            "endDate": "結束日期",
+            "endTime": "結束時間",
+            "color": "顏色"
+        },
+        "actions": {
+            "delete": "刪除行程",
+            "cancel": "取消",
+            "save": "儲存"
+        },
+        "errors": {
+            "endBeforeStart": "結束日期不能早於開始日期"
+        },
+        "untitled": "(無標題)"
+    },
+    "colors": {
+        "sky": "天藍色",
+        "amber": "琥珀色",
+        "violet": "紫色",
+        "rose": "玫瑰紅",
+        "emerald": "翠綠色",
+        "orange": "橘色"
+    },
+    "announcement": {
+        "added": "已新增行程「{{title}}」",
+        "updated": "已更新行程「{{title}}」",
+        "deleted": "已刪除行程「{{title}}」",
+        "moved": "已移動行程「{{title}}」",
+        "resized": "已調整行程「{{title}}」",
+        "moveRejected": "無法移動到此處",
+        "dismissRejection": "關閉"
+    },
+    "datePicker": {
+        "previousMonth": "上個月",
+        "nextMonth": "下個月",
+        "day": "{{date}}",
+        "dayToday": "今天，{{date}}",
+        "daySelected": "{{date}}，已選取",
+        "dayTodaySelected": "今天，{{date}}，已選取"
+    },
+    "formats": {
+        "monthYear": "yyyy'年'M'月'",
+        "dayHeading": "yyyy'年'M'月'd'日' EEE",
+        "dayCompact": "yyyy/M/d",
+        "dayMedium": "yyyy'年'M'月'd'日'",
+        "weekStart": "yyyy'年'M'月'",
+        "weekEnd": "yyyy'年'M'月'",
+        "agendaDay": "PPPP",
+        "resizeInstant": "PP p",
+        "timeOption": "p",
+        "overflowTriggerDay": "PPPP",
+        "overflowTitleDay": "PP",
+        "weekdayDay": "EEE d",
+        "hourLabel": "p",
+        "detailDay": "PP",
+        "detailTime": "p",
+        "detailDateTime": "PP p"
+    }
+}

@@ -1,0 +1,11 @@
+dist/
+artifacts/
+.tmp/
+coverage/
+test-results/
+node_modules/
+pnpm-lock.yaml
+LICENSES/
+THIRD_PARTY_NOTICES.md
+docs/
+**/*.md

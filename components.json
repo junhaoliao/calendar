@@ -1,0 +1,19 @@
+{
+    "$schema": "https://ui.shadcn.com/schema.json",
+    "style": "base-vega",
+    "rsc": false,
+    "tsx": true,
+    "tailwind": {"config": "", "css": "src/styles.css", "baseColor": "neutral", "cssVariables": true, "prefix": ""},
+    "iconLibrary": "lucide",
+    "rtl": false,
+    "aliases": {
+        "components": "#calendar/components",
+        "utils": "#calendar/lib/utils",
+        "ui": "#calendar/components/ui",
+        "lib": "#calendar/lib",
+        "hooks": "#calendar/components/event-calendar"
+    },
+    "menuColor": "default",
+    "menuAccent": "subtle",
+    "registries": {}
+}
