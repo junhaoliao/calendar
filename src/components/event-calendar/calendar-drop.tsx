@@ -64,7 +64,7 @@ const CalendarDrop = ({
 
     return (
         <div
-            className={cn("relative min-w-0", isDropTarget && "bg-accent ring-1 ring-inset ring-ring", className)}
+            className={cn("relative min-w-0", className)}
             style={style}
             data-date={date.toISOString()}
             data-minute={minute}
