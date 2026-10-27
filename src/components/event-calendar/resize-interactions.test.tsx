@@ -1,6 +1,6 @@
-import {render, screen, waitFor} from "@testing-library/react";
+import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {describe, expect, it, vi} from "vitest";
+import {describe, expect, it, onTestFinished, vi} from "vitest";
 import {EventCalendar} from "../../index";
 import {renderStrict} from "../../test/render";
 
@@ -201,5 +201,71 @@ describe("keyboard endpoint controls", () => {
         expect(onEventUpdate.mock.calls[0][0].start).toBe(event.start);
         expect(onEventUpdate.mock.calls[0][0].end).toEqual(new Date(2026, 9, 5, 10, 37));
         expect(onEventUpdate.mock.calls[0][0].metadata).toBe(event.metadata);
+    });
+});
+
+// Browsers apply a viewport change immediately but dispatch `resize` at their next rendering update.
+describe("window resize before the resize event is dispatched", () => {
+    const resizeViewport = () => {
+        const width = window.innerWidth;
+        vi.spyOn(window, "innerWidth", "get").mockReturnValue(width - 80);
+    };
+
+    it("cancels a pointer resize released against the resized layout", () => {
+        const onEventUpdate = vi.fn();
+        render(
+            <EventCalendar
+                events={[event]}
+                now={date}
+                initialDate={date}
+                initialView="day"
+                onEventUpdate={onEventUpdate}
+            />,
+        );
+        // jsdom has no layout: every point hits the day column, whose top is 0 and hours are 64px tall.
+        const column = document.querySelector('[data-slot="time-column"]')!;
+        Object.defineProperty(document, "elementFromPoint", {configurable: true, value: () => column});
+        onTestFinished(() => {
+            Reflect.deleteProperty(document, "elementFromPoint");
+        });
+        const drag = (release: () => void) => {
+            const handle = screen.getByRole("button", {name: "Adjust end of Meeting"});
+            fireEvent.pointerDown(handle, {pointerId: 1, isPrimary: true, button: 0, clientX: 10, clientY: 0});
+            fireEvent.pointerMove(window, {pointerId: 1, clientX: 10, clientY: 11 * 64});
+            expect(screen.getByText(/Resizing Meeting:/)).toHaveTextContent("Oct 4, 9:00 AM – Oct 4, 11:00 AM");
+            release();
+            fireEvent.pointerUp(window, {pointerId: 1, clientX: 10, clientY: 11 * 64});
+            expect(screen.queryByText(/Resizing Meeting:/)).not.toBeInTheDocument();
+        };
+
+        drag(() => {});
+        expect(onEventUpdate).toHaveBeenCalledTimes(1);
+        expect(onEventUpdate.mock.calls[0][0].end).toEqual(new Date(2026, 9, 4, 11));
+
+        drag(resizeViewport);
+        expect(onEventUpdate).toHaveBeenCalledTimes(1);
+    });
+
+    it("cancels a keyboard resize confirmed after the viewport changed", async () => {
+        const user = userEvent.setup();
+        const onEventUpdate = vi.fn();
+        render(
+            <EventCalendar
+                events={[event]}
+                now={date}
+                initialDate={date}
+                initialView="day"
+                onEventUpdate={onEventUpdate}
+            />,
+        );
+
+        screen.getByRole("button", {name: "Adjust end of Meeting"}).focus();
+        await user.keyboard("{ArrowDown}");
+        expect(screen.getByText(/Resizing Meeting:/)).toBeInTheDocument();
+        resizeViewport();
+        await user.keyboard("{Enter}");
+
+        expect(screen.queryByText(/Resizing Meeting:/)).not.toBeInTheDocument();
+        expect(onEventUpdate).not.toHaveBeenCalled();
     });
 });

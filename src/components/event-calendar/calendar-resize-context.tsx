@@ -206,6 +206,10 @@ export function CalendarResizeProvider({
         const grabOffset =
             pointer && surface && !dateOnly ? pointer.clientY - (edge === "start" ? surface.top : surface.bottom) : 0;
         let point = pointer ? {x: pointer.clientX, y: pointer.clientY} : null;
+        // Browsers resize the viewport at once but dispatch `resize` at their next rendering update, so a
+        // release handled in between must check the viewport itself instead of committing a stale layout.
+        const viewport = {width: window.innerWidth, height: window.innerHeight};
+        const viewportChanged = () => window.innerWidth !== viewport.width || window.innerHeight !== viewport.height;
         const pointerTarget = (x: number, y: number) => {
             const root = rootRef.current;
             const hit = document.elementFromPoint(x, y);
@@ -272,9 +276,13 @@ export function CalendarResizeProvider({
         };
         const up = (e: PointerEvent) => {
             if (e.pointerId !== active.current?.pointerId) return;
+            e.preventDefault();
+            if (viewportChanged()) {
+                finish(false);
+                return;
+            }
             point = {x: e.clientX, y: e.clientY};
             movePoint();
-            e.preventDefault();
             finish(activated);
         };
         const cancel = () => finish(false);
@@ -293,7 +301,7 @@ export function CalendarResizeProvider({
             ) {
                 e.preventDefault();
                 e.stopPropagation();
-                if (e.key === "Enter") finish(true);
+                if (e.key === "Enter") finish(!viewportChanged());
                 else if (e.key !== " ") keyboardStep(e.key);
             } else if (e.key === "Tab") cancel();
         };
