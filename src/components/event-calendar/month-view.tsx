@@ -50,7 +50,8 @@ const MonthView = memo(({date, events}: {date: Date; events: readonly CalendarEv
                     </div>
                 ))}
             </div>
-            <div className="min-h-0 flex-1 overflow-auto overscroll-contain" data-slot="calendar-scroll">
+            {/* Isolated so z-indexed content can't paint over WebKitGTK's overlay scrollbar. */}
+            <div className="isolate min-h-0 flex-1 overflow-auto overscroll-contain" data-slot="calendar-scroll">
                 <div
                     className="grid min-h-full auto-rows-fr"
                     style={{

@@ -86,7 +86,8 @@ const TimeView = memo(({date, events, view}: {date: Date; events: readonly Calen
 
     return (
         <div className="flex min-h-0 flex-1 flex-col" data-slot={`${view}-view`}>
-            <div className="min-h-0 flex-1 overflow-auto overscroll-contain" data-slot="calendar-scroll">
+            {/* Isolated so z-indexed content can't paint over WebKitGTK's overlay scrollbar. */}
+            <div className="isolate min-h-0 flex-1 overflow-auto overscroll-contain" data-slot="calendar-scroll">
                 <TimeHeader
                     dateLocale={dateLocale}
                     days={days}
