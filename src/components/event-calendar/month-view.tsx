@@ -70,7 +70,7 @@ const MonthView = memo(({date, events}: {date: Date; events: readonly CalendarEv
                                 : null;
                             return (
                                 <div
-                                    className="grid grid-cols-7 [&:last-child>*]:border-b-0"
+                                    className="grid grid-cols-7"
                                     key={weekDays[0].getTime()}
                                     ref={week === 0 ? rowRef : null}
                                 >
@@ -80,6 +80,7 @@ const MonthView = memo(({date, events}: {date: Date; events: readonly CalendarEv
                                                 capacity={capacity}
                                                 date={date}
                                                 day={day}
+                                                isLastWeek={week === days.length / 7 - 1}
                                                 items={segments[index]}
                                                 movePreview={previews?.[index].find(
                                                     (item) => item.event.id === movePreview?.id,

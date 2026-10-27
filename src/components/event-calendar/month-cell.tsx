@@ -13,6 +13,7 @@ interface MonthCellProps {
     day: Date;
     items: EventSegment[];
     capacity: number;
+    isLastWeek?: boolean;
     movePreview?: EventSegment;
 }
 
@@ -22,7 +23,7 @@ interface MonthCellProps {
  * @param props Date, lanes and user callbacks.
  * @return A date cell.
  */
-const MonthCell = ({day, items, capacity, date, movePreview}: MonthCellProps) => {
+const MonthCell = ({day, items, capacity, date, isLastWeek = false, movePreview}: MonthCellProps) => {
     const {tCalendar, dateLocale} = useCalendarTranslation();
     const {create} = useCalendarActions();
     const {readOnly} = useCalendarConfig();
@@ -38,6 +39,7 @@ const MonthCell = ({day, items, capacity, date, movePreview}: MonthCellProps) =>
             key={day.getTime()}
             className={cn(
                 "border-r border-b border-border/70 px-1 last:border-r-0",
+                isLastWeek && "border-b-0",
                 !isSameMonth(date, day) && "bg-muted/25 text-muted-foreground/70",
             )}
             onCreate={create}

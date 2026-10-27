@@ -61,6 +61,10 @@ globals through tsconfig.lib.json.
   `#calendar` mapping supports shadcn CLI destinations; source modules use relative imports.
 - Edit src/styles.css, then run `pnpm build:css`. Keep host page styles in the demo
   or consumer app. Calendar styles, portals, and animations must remain scoped.
+- Don't put a structural pseudo-class such as `:last-child` before a combinator, as in
+  `[&:last-child>*]`. On hosts that use utilities such as Tailwind's `space-y-*`, Chromium
+  then restyles the whole page whenever a `<body>` child is added or removed. Derive such
+  styling from render data instead.
 
 ## Code organization
 
