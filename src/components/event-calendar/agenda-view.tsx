@@ -26,8 +26,9 @@ const AgendaView = memo(({date, events}: AgendaProps) => {
         .filter((group) => group.events.length > 0);
 
     return (
+        // Isolated so z-indexed content can't paint over WebKitGTK's overlay scrollbar.
         <div
-            className="min-h-0 flex-1 overflow-auto overscroll-contain border-t border-border/70 px-4"
+            className="isolate min-h-0 flex-1 overflow-auto overscroll-contain border-t border-border/70 px-4"
             data-slot="calendar-scroll"
         >
             {groups.length === 0 ? (
