@@ -1,11 +1,10 @@
-import {type CSSProperties, type ReactNode, useMemo, useRef} from "react";
-import {format} from "date-fns";
-import type {Locale} from "date-fns";
+import {type CSSProperties, type ReactNode, useRef} from "react";
 
 import {useDroppable} from "@dnd-kit/react";
 
 import {cn} from "../../lib/utils";
 import {useCalendarTranslation} from "../../i18n/translations";
+import {slotLabel} from "../../i18n/slot-label";
 import {calendarCollision} from "./calendar-collision";
 import {atMinute} from "../../core/dates";
 import type {DropData} from "./types";
@@ -33,7 +32,7 @@ const CalendarDrop = ({
     onCreate,
     style,
 }: CalendarDropProps) => {
-    const {tCalendar, dateLocale} = useCalendarTranslation();
+    const {slotLabel: labelSlot} = useCalendarTranslation();
     const elementRef = useRef<HTMLDivElement | null>(null);
     const {ref, isDropTarget} = useDroppable({
         collisionDetector: (input) => calendarCollision(input, elementRef.current),
@@ -47,20 +46,7 @@ const CalendarDrop = ({
         id: id,
     });
     const start = atMinute(date, minute ?? 540);
-    const startTime = date.getTime();
-    const label = useMemo(
-        () =>
-            slotLabel(
-                atMinute(new Date(startTime), minute ?? 540),
-                allDay,
-                (kind, values) =>
-                    kind === "allDay"
-                        ? tCalendar(($) => $.slot.addAllDay, values)
-                        : tCalendar(($) => $.slot.addAt, values),
-                dateLocale,
-            ),
-        [startTime, minute, allDay, tCalendar, dateLocale],
-    );
+    const label = labelSlot(start, allDay);
 
     return (
         <div
@@ -87,21 +73,6 @@ const CalendarDrop = ({
             {children}
         </div>
     );
-};
-
-/** Required translation lookup keeps this formatter independent of React hooks. */
-const slotLabel = (
-    start: Date,
-    allDay: boolean | undefined,
-    translate: (kind: "allDay" | "timed", values: {date: string; time: string}) => string,
-    locale: Locale,
-): string => {
-    const english = locale.code?.startsWith("en");
-    const values = {
-        date: format(start, english ? "MMMM d, yyyy" : "PPP", {locale}),
-        time: format(start, english ? "h:mm a" : "p", {locale}),
-    };
-    return translate(allDay ? "allDay" : "timed", values);
 };
 
 export {CalendarDrop, slotLabel};
