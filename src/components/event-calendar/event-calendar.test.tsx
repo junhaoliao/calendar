@@ -20,6 +20,7 @@ const calendarObservers = vi.hoisted(() => {
 
 import {EventCalendar} from "../../event-calendar";
 import {CalendarStyleProvider, useCalendarStyle} from "../../lib/calendar-style";
+import {CalendarI18nProvider} from "../../i18n/provider";
 import {CalendarContextProvider, useCalendarActions, useCalendarConfig, useCalendarNow} from "./calendar-context";
 import {CalendarResizeProvider, useCalendarResizeActions, useCalendarResizeSession} from "./calendar-resize-context";
 import {monthDays} from "../../core/dates";
@@ -932,7 +933,9 @@ describe("event calendar consumer interactions", () => {
         const snapshots: ResizeContextSnapshot[] = [];
         const onRead = (snapshot: ResizeContextSnapshot) => snapshots.push(snapshot);
         const events = [meeting];
-        const {rerender} = render(<ResizeContextHarness clock={now} events={events} onRead={onRead} />);
+        const {rerender} = render(<ResizeContextHarness clock={now} events={events} onRead={onRead} />, {
+            wrapper: CalendarI18nProvider,
+        });
         const initial = snapshots[0];
         expect(initial.resizeActions).not.toBeNull();
         expect(initial.resizeSession).toBeNull();
