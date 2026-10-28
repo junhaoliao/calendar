@@ -9,8 +9,10 @@ context separates stable actions/configuration from the clock value.
 
 The editor creates a draft for each open session and retains it through the close
 transition. Existing-event operations preserve consumer fields and metadata.
-Each calendar has an isolated i18next instance. See the [API](../API.md) for the
-public data, navigation, and callback contracts.
+Each calendar has an isolated i18next instance with one react-i18next binding;
+components read the translator, date-fns locale, and cached slot labels from
+context. See the [API](../API.md) for the public data, navigation, and callback
+contracts.
 
 ## Core and presentation
 
