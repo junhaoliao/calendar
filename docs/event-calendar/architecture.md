@@ -63,6 +63,11 @@ Week and Day views use one CalendarDrop per quarter-hour. Explicit targets give
 pointer creation and keyboard dragging the same date/minute destinations. A week
 has 672 timed slot targets and corresponding slot tab stops, in addition to events.
 
+Slot targets are never disabled, and the inputs passed to dnd-kit stay referentially
+stable. dnd-kit recomputes every collision for each target that changes, so toggling
+all of them while a drop settles stalls the main thread. Read-only calendars render
+no drag sources and ignore drops instead.
+
 The cost is target registration and a large keyboard tab sequence. Roving keyboard
 focus could reduce tab stops independently of the drop-target model. A column-level
 target design must preserve exact quarter-hour movement, cross-day keyboard moves,
