@@ -61,6 +61,18 @@ afterEach(() => {
 });
 
 describe("render isolation", () => {
+    it("registers Week slot targets on mount and keeps them through read-only changes", () => {
+        const calendar = (readOnly: boolean) => (
+            <EventCalendar events={[]} initialDate={sunday} initialView="week" now={sunday} readOnly={readOnly} />
+        );
+        const {rerender} = render(calendar(false));
+        expect(counts.timedDroppable).toBe(7 * 96);
+
+        resetCounts();
+        rerender(calendar(true));
+        rerender(calendar(false));
+        expect(counts.droppable).toBe(0);
+    });
     it.each([false, true])("refreshes move config only for a replaced host policy: %s", async (replacePolicy) => {
         const user = userEvent.setup();
         const events: CalendarEvent[] = [
