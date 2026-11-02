@@ -8,6 +8,7 @@ import {useCalendarTranslation} from "../../i18n/translations";
 import {slotLabel} from "../../i18n/slot-label";
 import {calendarCollision} from "./calendar-collision";
 import {atMinute} from "../../core/dates";
+import {useDropTargetsEnabled} from "./drop-targets";
 import type {DropData} from "./types";
 
 interface CalendarDropProps extends DropData {
@@ -53,7 +54,7 @@ const SlotDroppable = memo(({id, data, elementRef, onDropTargetChange}: SlotDrop
 SlotDroppable.displayName = "SlotDroppable";
 
 /**
- * A labelled, keyboard-operable slot and dnd-kit destination.
+ * A labelled, keyboard-operable slot and, once drop targets are enabled, a dnd-kit destination.
  */
 const CalendarDrop = ({
     id,
@@ -67,6 +68,7 @@ const CalendarDrop = ({
     style,
 }: CalendarDropProps) => {
     const {slotLabel: labelSlot} = useCalendarTranslation();
+    const dropTargets = useDropTargetsEnabled();
     const elementRef = useRef<HTMLDivElement | null>(null);
     const [isDropTarget, setIsDropTarget] = useState(false);
     const startTime = date.getTime();
@@ -100,7 +102,9 @@ const CalendarDrop = ({
                 />
                 {children}
             </div>
-            <SlotDroppable data={data} elementRef={elementRef} id={id} onDropTargetChange={setIsDropTarget} />
+            {dropTargets && (
+                <SlotDroppable data={data} elementRef={elementRef} id={id} onDropTargetChange={setIsDropTarget} />
+            )}
         </>
     );
 };
