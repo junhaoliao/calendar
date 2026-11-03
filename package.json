@@ -1,6 +1,6 @@
 {
     "name": "@junhaoliao/calendar",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Controlled React event calendar with four views, accessible dragging and responsive overlap lanes.",
     "license": "MIT",
     "author": "Junhao Liao <junhao@junhao.ca>",
