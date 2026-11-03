@@ -1,4 +1,4 @@
-import {act, render, screen, within} from "@testing-library/react";
+import {act, fireEvent, render, screen, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {afterEach, beforeEach, describe, expect, it, vi} from "vitest";
 import type * as DndKit from "@dnd-kit/react";
@@ -61,18 +61,39 @@ afterEach(() => {
 });
 
 describe("render isolation", () => {
-    it("registers Week slot targets on mount and keeps them through read-only changes", () => {
-        const calendar = (readOnly: boolean) => (
-            <EventCalendar events={[]} initialDate={sunday} initialView="week" now={sunday} readOnly={readOnly} />
-        );
-        const {rerender} = render(calendar(false));
-        expect(counts.timedDroppable).toBe(7 * 96);
+    it.each(["pointerDown", "focus", "keyDown"] as const)(
+        "registers Week slot targets on the first event %s and keeps them through read-only changes",
+        (interaction) => {
+            const meeting: CalendarEvent = {
+                id: "meeting",
+                title: "Meeting",
+                start: sunday,
+                end: new Date(2026, 9, 4, 11),
+            };
+            const calendar = (readOnly: boolean) => (
+                <EventCalendar
+                    events={[meeting]}
+                    initialDate={sunday}
+                    initialView="week"
+                    now={sunday}
+                    readOnly={readOnly}
+                />
+            );
+            const {container, rerender} = render(calendar(false));
+            expect(counts.timedDroppable).toBe(0);
 
-        resetCounts();
-        rerender(calendar(true));
-        rerender(calendar(false));
-        expect(counts.droppable).toBe(0);
-    });
+            fireEvent[interaction](container.querySelector('[data-slot="calendar-drop"][data-minute] > button')!);
+            expect(counts.timedDroppable).toBe(0);
+
+            fireEvent[interaction](container.querySelector('[data-calendar-event="meeting"]')!);
+            expect(counts.timedDroppable).toBe(7 * 96);
+
+            resetCounts();
+            rerender(calendar(true));
+            rerender(calendar(false));
+            expect(counts.droppable).toBe(0);
+        },
+    );
     it.each([false, true])("refreshes move config only for a replaced host policy: %s", async (replacePolicy) => {
         const user = userEvent.setup();
         const events: CalendarEvent[] = [
@@ -139,6 +160,7 @@ describe("render isolation", () => {
         );
         const source = container.querySelector<HTMLElement>('[data-calendar-event="meeting"]');
         expect(source).not.toBeNull();
+        fireEvent.focus(source!);
 
         screen.getByRole("button", {name: "Adjust start of Meeting"}).focus();
         await user.keyboard("{ArrowDown}");
@@ -194,6 +216,7 @@ describe("render isolation", () => {
         expect(sundayColumn).not.toBeNull();
         expect(sundayColumn?.querySelector('[data-slot="current-time"]')).not.toBeNull();
 
+        fireEvent.focus(container.querySelector('[data-calendar-event="past"]')!);
         resetCounts();
         act(() => {
             vi.advanceTimersByTime(60_000 * 2);

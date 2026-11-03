@@ -1,4 +1,4 @@
-import {useEffect, type ComponentProps} from "react";
+import {useEffect, useState, type ComponentProps, type SyntheticEvent} from "react";
 
 import {Accessibility, Feedback} from "@dnd-kit/dom";
 import {DragDropProvider} from "@dnd-kit/react";
@@ -20,6 +20,7 @@ import {TimeView} from "./time-view";
 import type {EventCalendarProps} from "./types";
 import {useCalendarController} from "./use-calendar-controller";
 import {MoveFeedback} from "./move-feedback";
+import {DropTargetsContext} from "./drop-targets";
 
 const silent = () => undefined;
 
@@ -43,6 +44,12 @@ const CalendarSurface = (options: EventCalendarProps) => {
     const {scopeProps, rootRef: themeRef} = useCalendarStyle();
     const {className} = options;
     const {actions, config, date, view, now, draft, rootRef, announcement, rejection} = useCalendarController(options);
+    const [dropTargets, setDropTargets] = useState(false);
+    const enableDropTargets = dropTargets
+        ? undefined
+        : (event: SyntheticEvent) => {
+              if ((event.target as Element).closest("[data-calendar-event]")) setDropTargets(true);
+          };
     useEffect(() => {
         if (!rejection) return;
         const document = rootRef.current?.ownerDocument;
@@ -82,71 +89,76 @@ const CalendarSurface = (options: EventCalendarProps) => {
                 if (themeRef) themeRef.current = node;
             }}
             tabIndex={-1}
+            onFocusCapture={enableDropTargets}
             onKeyDown={actions.handleShortcut}
+            onKeyDownCapture={enableDropTargets}
+            onPointerDownCapture={enableDropTargets}
         >
-            <CalendarContextProvider actions={actions} config={config} now={now}>
-                <CalendarResizeProvider
-                    date={date}
-                    readOnly={config.readOnly}
-                    rootRef={rootRef}
-                    visibleDates={visibleDates}
-                    view={view}
-                    onActiveChange={actions.resizeActive}
-                    onCommit={actions.commitResize}
-                >
-                    <DragDropProvider
-                        sensors={CALENDAR_SENSORS}
-                        plugins={calendarPlugins}
-                        onDragEnd={actions.endDrag}
-                        onDragStart={actions.beginDrag}
+            <DropTargetsContext.Provider value={dropTargets}>
+                <CalendarContextProvider actions={actions} config={config} now={now}>
+                    <CalendarResizeProvider
+                        date={date}
+                        readOnly={config.readOnly}
+                        rootRef={rootRef}
+                        visibleDates={visibleDates}
+                        view={view}
+                        onActiveChange={actions.resizeActive}
+                        onCommit={actions.commitResize}
                     >
-                        <CalendarToolbar
-                            changeDate={actions.changeDate}
-                            changeView={actions.changeView}
-                            create={actions.create}
-                            date={date}
-                            isReadOnly={config.readOnly}
-                            now={now}
-                            view={view}
-                        />
-                        {view === "month" && <MonthView date={date} events={options.events} />}
-                        {(view === "week" || view === "day") && (
-                            <TimeView date={date} events={options.events} key={view} view={view} />
-                        )}
-                        {view === "agenda" && <AgendaView date={date} events={options.events} />}
-                        <MoveFeedback />
-                    </DragDropProvider>
-                </CalendarResizeProvider>
-                {draft && (
-                    <EventEditor
-                        draft={draft}
-                        onClose={actions.closeDraft}
-                        onCreate={actions.addDraft}
-                        onDelete={actions.deleteDraft}
-                        onUpdate={actions.updateDraft}
-                    />
-                )}
-                <span className="sr-only" role="status">
-                    {announcement}
-                </span>
-                {rejection && (
-                    <div data-slot="move-rejection" className="flex items-center justify-between gap-2 px-3 py-1">
-                        <span role="alert" className="text-sm text-destructive">
-                            {rejection.reason ?? tCalendar(($) => $.announcement.moveRejected)}
-                        </span>
-                        <Button
-                            size="xs"
-                            variant="ghost"
-                            onClick={() => {
-                                actions.dismissRejection();
-                                rootRef.current?.focus();
-                            }}
+                        <DragDropProvider
+                            sensors={CALENDAR_SENSORS}
+                            plugins={calendarPlugins}
+                            onDragEnd={actions.endDrag}
+                            onDragStart={actions.beginDrag}
                         >
-                            {tCalendar(($) => $.announcement.dismissRejection)}
-                        </Button>
-                    </div>
-                )}
-            </CalendarContextProvider>
+                            <CalendarToolbar
+                                changeDate={actions.changeDate}
+                                changeView={actions.changeView}
+                                create={actions.create}
+                                date={date}
+                                isReadOnly={config.readOnly}
+                                now={now}
+                                view={view}
+                            />
+                            {view === "month" && <MonthView date={date} events={options.events} />}
+                            {(view === "week" || view === "day") && (
+                                <TimeView date={date} events={options.events} key={view} view={view} />
+                            )}
+                            {view === "agenda" && <AgendaView date={date} events={options.events} />}
+                            <MoveFeedback />
+                        </DragDropProvider>
+                    </CalendarResizeProvider>
+                    {draft && (
+                        <EventEditor
+                            draft={draft}
+                            onClose={actions.closeDraft}
+                            onCreate={actions.addDraft}
+                            onDelete={actions.deleteDraft}
+                            onUpdate={actions.updateDraft}
+                        />
+                    )}
+                    <span className="sr-only" role="status">
+                        {announcement}
+                    </span>
+                    {rejection && (
+                        <div data-slot="move-rejection" className="flex items-center justify-between gap-2 px-3 py-1">
+                            <span role="alert" className="text-sm text-destructive">
+                                {rejection.reason ?? tCalendar(($) => $.announcement.moveRejected)}
+                            </span>
+                            <Button
+                                size="xs"
+                                variant="ghost"
+                                onClick={() => {
+                                    actions.dismissRejection();
+                                    rootRef.current?.focus();
+                                }}
+                            >
+                                {tCalendar(($) => $.announcement.dismissRejection)}
+                            </Button>
+                        </div>
+                    )}
+                </CalendarContextProvider>
+            </DropTargetsContext.Provider>
         </div>
     );
 };

@@ -68,6 +68,10 @@ stable. dnd-kit recomputes every collision for each target that changes, so togg
 all of them while a drop settles stalls the main thread. Read-only calendars render
 no drag sources and ignore drops instead.
 
+Registering a target copies dnd-kit's registry, so the surface renders slots immediately
+but registers them only after the first pointer press, focus, or key press on an event,
+before a drag can activate. They stay enabled until the surface unmounts.
+
 The cost is target registration and a large keyboard tab sequence. Roving keyboard
 focus could reduce tab stops independently of the drop-target model. A column-level
 target design must preserve exact quarter-hour movement, cross-day keyboard moves,
